@@ -70,7 +70,7 @@ Once you open the application:
 
 Join our Slack community to get help, report issues, and request new features:
 
-- **[💬 Join StriveTech-AI Slack](https://join.slack.com/t/strivetech-ai)** — Chat with the team and other users
+- **[💬 Join StriveTech-AI Slack](https://join.slack.com/t/strivetech-ai/shared_invite/zt-3si2qa4qt-fKB562tFrbnFN4dzFoCl_Q)** — Chat with the team and other users
 - **[🐛 Report a Bug](https://github.com/Lee996677/strive-downloads/issues/new?labels=bug)** — Found something broken? Let us know
 - **[✨ Request a Feature](https://github.com/Lee996677/strive-downloads/issues/new?labels=enhancement)** — Have an idea? We'd love to hear it
 
