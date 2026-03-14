@@ -66,6 +66,21 @@ Once you open the application:
 2. **Model Download:** It will recommend the perfect "AI Brain" (Model) for your hardware. Click download. (This requires internet, but you can go offline immediately after).
 3. **Chat Securely:** Start typing! You can drag and drop private PDFs directly into the chat window to ask questions about them.
 
+## 💬 Community & Support
+
+Join our Slack community to get help, report issues, and request new features:
+
+- **[💬 Join StriveTech-AI Slack](https://join.slack.com/t/strivetech-ai)** — Chat with the team and other users
+- **[🐛 Report a Bug](https://github.com/Lee996677/strive-downloads/issues/new?labels=bug)** — Found something broken? Let us know
+- **[✨ Request a Feature](https://github.com/Lee996677/strive-downloads/issues/new?labels=enhancement)** — Have an idea? We'd love to hear it
+
+### Slack Channels:
+| Channel | Purpose |
+|---------|---------|
+| `#all-strivetech-ai` | General discussion & announcements |
+| `#product-announcements` | New releases & feature updates |
+| `#report-bugs` | Bug reports & troubleshooting |
+
 ---
 
 *© 2026 StriveTech AI Ltd. All rights reserved.*
