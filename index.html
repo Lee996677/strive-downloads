@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strive Private AI — Beta Tester Guide</title>
+    <meta name="description" content="Help us test Strive Private AI. 15-minute guided walkthrough + feedback form.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-0: #030305;
+            --bg-1: #07070C;
+            --bg-2: #0D0D16;
+            --bg-3: #12121C;
+            --line: rgba(255,255,255,0.07);
+            --line-strong: rgba(255,255,255,0.12);
+            --text: #F4F5F7;
+            --text-2: #A3A6B4;
+            --text-3: #61647A;
+            --text-4: #3A3D4F;
+            --cyan: #00F0FF;
+            --cyan-2: #33F3FF;
+            --cyan-dim: rgba(0,240,255,0.12);
+            --cyan-line: rgba(0,240,255,0.22);
+            --purple: #BC13FE;
+            --green: #00FF9D;
+            --red: #FF2A6D;
+            --yellow: #FFE600;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg-0);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+        }
+        body::before {
+            content: "";
+            position: fixed; inset: 0; z-index: -1;
+            background:
+                radial-gradient(1000px 600px at 85% -10%, rgba(188,19,254,0.14), transparent 60%),
+                radial-gradient(1200px 800px at 10% 110%, rgba(0,240,255,0.10), transparent 60%),
+                linear-gradient(180deg, #030308 0%, #05050C 100%);
+        }
+        .container { max-width: 860px; margin: 0 auto; padding: 48px 32px 96px; }
+        header {
+            padding: 32px 0 40px;
+            border-bottom: 1px solid var(--line);
+            margin-bottom: 40px;
+        }
+        .brand {
+            display: flex; align-items: center; gap: 14px; margin-bottom: 24px;
+        }
+        .brand-icon {
+            width: 44px; height: 44px; border-radius: 12px;
+            background: linear-gradient(135deg, #0D0D16, #1A1A26);
+            border: 1px solid var(--cyan-line);
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 20px rgba(0,240,255,0.2);
+        }
+        .brand-text .name { font-size: 18px; font-weight: 700; }
+        .brand-text .tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px; color: var(--text-3);
+            letter-spacing: 1.5px; text-transform: uppercase; margin-top: 2px;
+        }
+        h1 {
+            font-size: 40px; font-weight: 800;
+            letter-spacing: -0.02em; line-height: 1.15;
+            margin-bottom: 12px;
+        }
+        .subtitle { font-size: 17px; color: var(--text-2); max-width: 600px; }
+        .gradient-text {
+            background: linear-gradient(135deg, var(--cyan) 0%, var(--purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .privacy-chip {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 6px 12px; margin-bottom: 20px;
+            background: rgba(0,255,157,0.06);
+            border: 1px solid rgba(0,255,157,0.2);
+            border-radius: 6px;
+            font-size: 11px; color: var(--green);
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+        }
+
+        section { margin-bottom: 40px; }
+        h2 {
+            font-size: 24px; font-weight: 700;
+            margin-bottom: 16px; letter-spacing: -0.01em;
+            display: flex; align-items: center; gap: 12px;
+        }
+        h2 .step-num {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 32px; height: 32px;
+            background: rgba(0,240,255,0.08);
+            border: 1px solid var(--cyan-line);
+            border-radius: 50%;
+            color: var(--cyan);
+            font-size: 14px; font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        h3 { font-size: 16px; font-weight: 600; margin: 20px 0 8px; color: var(--text); }
+        p { color: var(--text-2); margin-bottom: 12px; }
+        strong { color: var(--text); font-weight: 600; }
+
+        .download-grid {
+            display: grid; grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px; margin: 24px 0;
+        }
+        .download-card {
+            padding: 20px; border-radius: 12px;
+            background: rgba(13,13,22,0.6);
+            border: 1px solid var(--line);
+            transition: all 0.2s;
+            text-align: center;
+        }
+        .download-card:hover {
+            border-color: var(--cyan-line);
+            box-shadow: 0 0 24px rgba(0,240,255,0.08);
+            transform: translateY(-2px);
+        }
+        .download-card .os-name {
+            font-size: 14px; font-weight: 600; margin-bottom: 4px;
+        }
+        .download-card .os-detail {
+            font-size: 11px; color: var(--text-3); margin-bottom: 14px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 10px 18px; border-radius: 8px;
+            font-size: 13px; font-weight: 600;
+            text-decoration: none; transition: all 0.2s;
+            border: 1px solid;
+        }
+        .btn-primary {
+            background: var(--cyan); color: #001014;
+            border-color: var(--cyan);
+            box-shadow: 0 0 20px rgba(0,240,255,0.3);
+        }
+        .btn-primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
+        .btn-ghost {
+            background: transparent; color: var(--text);
+            border-color: var(--line-strong);
+        }
+        .btn-ghost:hover { border-color: var(--cyan-line); color: var(--cyan); }
+
+        .callout {
+            padding: 16px 20px; border-radius: 10px;
+            background: rgba(255,230,0,0.04);
+            border: 1px solid rgba(255,230,0,0.2);
+            border-left: 3px solid var(--yellow);
+            margin: 20px 0;
+            font-size: 13.5px;
+        }
+        .callout.info {
+            background: rgba(0,240,255,0.04);
+            border-color: rgba(0,240,255,0.2);
+            border-left-color: var(--cyan);
+        }
+        .callout.danger {
+            background: rgba(255,42,109,0.04);
+            border-color: rgba(255,42,109,0.2);
+            border-left-color: var(--red);
+        }
+        .callout strong { display: block; margin-bottom: 4px; }
+
+        .test-step {
+            padding: 18px 22px; border-radius: 12px;
+            background: rgba(13,13,22,0.5);
+            border: 1px solid var(--line);
+            margin-bottom: 12px;
+            display: flex; gap: 16px; align-items: flex-start;
+        }
+        .test-step .num {
+            flex-shrink: 0;
+            width: 28px; height: 28px;
+            background: rgba(0,240,255,0.08);
+            border: 1px solid var(--cyan-line);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px; font-weight: 700;
+            color: var(--cyan);
+        }
+        .test-step .content { flex: 1; }
+        .test-step .title {
+            font-size: 14px; font-weight: 600; margin-bottom: 4px;
+        }
+        .test-step .detail {
+            font-size: 13px; color: var(--text-2); margin-bottom: 6px;
+        }
+        .test-step .expect {
+            font-size: 12px; color: var(--text-3);
+            padding: 6px 10px; border-radius: 6px;
+            background: rgba(0,255,157,0.04);
+            border: 1px solid rgba(0,255,157,0.15);
+            margin-top: 8px;
+            display: inline-block;
+        }
+        .test-step .expect::before {
+            content: "✓ Expected: "; color: var(--green); font-weight: 600;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12.5px;
+            padding: 2px 6px; border-radius: 4px;
+            background: rgba(0,240,255,0.08);
+            color: var(--cyan-2);
+        }
+
+        form {
+            padding: 32px; border-radius: 16px;
+            background: rgba(13,13,22,0.6);
+            border: 1px solid var(--cyan-line);
+            margin-top: 32px;
+        }
+        form h2 { margin-bottom: 8px; }
+        form p { margin-bottom: 24px; color: var(--text-3); font-size: 14px; }
+        .form-group { margin-bottom: 16px; }
+        .form-group label {
+            display: block; font-size: 12px; font-weight: 600;
+            color: var(--text-2); margin-bottom: 6px;
+            text-transform: uppercase; letter-spacing: 0.8px;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%; padding: 10px 14px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            color: var(--text); font-family: inherit; font-size: 14px;
+            outline: none; transition: border-color 0.2s;
+        }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            border-color: var(--cyan);
+        }
+        .form-group textarea { min-height: 110px; resize: vertical; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .rating-group { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+        .rating-option {
+            padding: 8px 14px; border-radius: 8px;
+            background: rgba(0,0,0,0.3); border: 1px solid var(--line);
+            cursor: pointer; font-size: 13px; color: var(--text-2);
+            transition: all 0.2s;
+        }
+        .rating-option input { display: none; }
+        .rating-option:hover { border-color: var(--cyan-line); color: var(--text); }
+        .rating-option.selected {
+            background: rgba(0,240,255,0.1);
+            border-color: var(--cyan);
+            color: var(--cyan);
+        }
+        .submit-btn {
+            width: 100%; padding: 14px 20px;
+            background: var(--cyan); color: #001014;
+            border: none; border-radius: 10px;
+            font-family: inherit; font-size: 15px; font-weight: 700;
+            cursor: pointer; margin-top: 8px;
+            box-shadow: 0 0 30px rgba(0,240,255,0.3);
+            transition: all 0.2s;
+        }
+        .submit-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+        footer {
+            margin-top: 64px; padding-top: 24px;
+            border-top: 1px solid var(--line);
+            text-align: center;
+            font-size: 12px; color: var(--text-4);
+        }
+        footer a { color: var(--cyan); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 720px) {
+            .container { padding: 32px 20px 64px; }
+            h1 { font-size: 30px; }
+            .download-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="brand">
+                <div class="brand-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2L4 5v7c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V5l-8-3z"
+                            stroke="#00F0FF" stroke-width="1.5" fill="rgba(0,240,255,0.08)" />
+                        <path d="M12 7v5M9 10h6" stroke="#00F0FF" stroke-width="1.5" stroke-linecap="round" />
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <div class="name">Strive Private AI</div>
+                    <div class="tag">Beta · v1.4.1</div>
+                </div>
+            </div>
+            <div class="privacy-chip">🔒 ON-DEVICE · AIR-GAPPED · PRIVATE</div>
+            <h1>You're helping test the <span class="gradient-text">world's most private AI</span></h1>
+            <p class="subtitle">
+                A desktop app that runs powerful AI on your computer. No cloud. No telemetry. No account required.
+                This 15-minute walkthrough gets you hands-on and lets us know what works.
+            </p>
+        </header>
+
+        <section>
+            <h2><span class="step-num">1</span> Download for your system</h2>
+            <p>Pick your platform and download the installer. File sizes are small (~10MB) — the AI models come later, inside the app.</p>
+
+            <div class="download-grid">
+                <div class="download-card">
+                    <div class="os-name">macOS</div>
+                    <div class="os-detail">Apple Silicon (M1/M2/M3)</div>
+                    <a href="https://github.com/Lee996677/strive-downloads/releases/download/v1.4.1/Strive.Private.AI_1.4.1_aarch64.dmg" class="btn btn-primary">
+                        Download DMG
+                    </a>
+                </div>
+                <div class="download-card">
+                    <div class="os-name">Windows</div>
+                    <div class="os-detail">64-bit · 10 or later</div>
+                    <a href="https://github.com/Lee996677/strive-downloads/releases/download/v1.4.1/Strive.Private.AI_1.4.1_x64-setup.exe" class="btn btn-primary">
+                        Download EXE
+                    </a>
+                </div>
+                <div class="download-card">
+                    <div class="os-name">Linux</div>
+                    <div class="os-detail">Debian / Ubuntu x64</div>
+                    <a href="https://github.com/Lee996677/strive-downloads/releases/download/v1.4.1/Strive.Private.AI_1.4.1_amd64.deb" class="btn btn-primary">
+                        Download DEB
+                    </a>
+                </div>
+            </div>
+
+            <div class="callout">
+                <strong>First-time security warning?</strong>
+                macOS and Windows will show a warning because the app isn't code-signed yet.
+                <strong style="display:inline;">On Mac:</strong> right-click the app → Open → "Open anyway".
+                <strong style="display:inline;">On Windows:</strong> click "More info" → "Run anyway".
+                This is safe — it's just the OS asking because we're a small publisher.
+            </div>
+        </section>
+
+        <section>
+            <h2><span class="step-num">2</span> Run the 8-step smoke test</h2>
+            <p>Spend about 15 minutes walking through the app. Note anything that doesn't work, looks wrong, or feels confusing.</p>
+
+            <div class="test-step">
+                <div class="num">1</div>
+                <div class="content">
+                    <div class="title">Launch the app</div>
+                    <div class="detail">Open the installed Strive Private AI app. You'll see a boot animation briefly.</div>
+                    <div class="expect">Sidebar with 4 nav items, clean dark UI with cyan accents, Chat tab active</div>
+                </div>
+            </div>
+
+            <div class="test-step">
+                <div class="num">2</div>
+                <div class="content">
+                    <div class="title">Navigate all 4 tabs</div>
+                    <div class="detail">Click: Chat → Documents → Models → Settings. Each should load without errors.</div>
+                    <div class="expect">Each tab loads in under 1 second, active item highlighted in cyan</div>
+                </div>
+            </div>
+
+            <div class="test-step">
+                <div class="num">3</div>
+                <div class="content">
+                    <div class="title">Download your first model</div>
+                    <div class="detail">Go to Models tab. Find <code>Phi-3 Mini</code> (~2GB). Click <strong>Download</strong>.</div>
+                    <div class="expect">Progress bar animates 0 → 100% over 1–3 minutes (depends on internet)</div>
+                </div>
+            </div>
+
+            <div class="test-step">
+                <div class="num">4</div>
+                <div class="content">
+                    <div class="title">Activate the model</div>
+                    <div class="detail">Once downloaded, click the model → click <strong>Use</strong> (or "Load into memory").</div>
+                    <div class="expect">Button changes to "Active" with a green indicator</div>
+                </div>
+            </div>
+
+            <div class="test-step">
+                <div class="num">5</div>
+                <div class="content">
+                    <div class="title">Have a conversation</div>
+                    <div class="detail">Click Chat tab. Type: <code>Explain quantum computing in one paragraph</code></div>
+                    <div class="expect">"Thinking locally…" indicator, then a response appears within 5–15 seconds</div>
+                </div>
+            </div>
+
+            <div class="test-step">
+                <div class="num">6</div>
+                <div class="content">
+                    <div class="title">Upload a document</div>
+                    <div class="detail">Click Documents → <strong>Add documents</strong>. Pick any small PDF or text file.</div>
+                    <div class="expect">Native file picker opens. After selection, a success toast appears and the file shows in the list.</div>
+                </div>
+            </div>
+
+            <div class="test-step">
+                <div class="num">7</div>
+                <div class="content">
+                    <div class="title">Chat with your document</div>
+                    <div class="detail">Go back to Chat. Click the <strong>RAG</strong> chip (turns cyan). Ask something specific about your uploaded file.</div>
+                    <div class="expect">Response references the content of your document</div>
+                </div>
+            </div>
+
+            <div class="test-step">
+                <div class="num">8</div>
+                <div class="content">
+                    <div class="title">Check system info</div>
+                    <div class="detail">Settings tab → About. Your real RAM, CPU cores, and OS should be shown.</div>
+                    <div class="expect">Accurate hardware info (matches your Mac/PC specs)</div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2><span class="step-num">3</span> What to watch for</h2>
+
+            <h3>✅ Report as "working"</h3>
+            <ul style="color: var(--text-2); padding-left: 20px; font-size: 14px; line-height: 1.8;">
+                <li>Buttons respond when clicked</li>
+                <li>Downloads complete</li>
+                <li>AI responds to questions with text</li>
+                <li>File uploads succeed</li>
+                <li>No blank screens or frozen UI</li>
+            </ul>
+
+            <h3>❌ Report as a bug</h3>
+            <ul style="color: var(--text-2); padding-left: 20px; font-size: 14px; line-height: 1.8;">
+                <li>Blank or dark screen that never loads</li>
+                <li>App crashes / quits unexpectedly</li>
+                <li>A click does nothing visible</li>
+                <li>Error message in a red toast</li>
+                <li>Download progress freezes</li>
+                <li>AI gives no response or errors</li>
+                <li>Text overlapping or layout looks broken</li>
+            </ul>
+
+            <div class="callout info">
+                <strong>Privacy test (optional)</strong>
+                Before step 5, disconnect your Wi-Fi. The chat should still work — that's the whole point.
+                Reconnect before step 3 (you need internet to download the model initially).
+            </div>
+        </section>
+
+        <section>
+            <h2><span class="step-num">4</span> Send feedback</h2>
+            <p>Your feedback goes directly to the founders. We read every submission.</p>
+
+            <form action="https://formspree.io/f/xblgpwkj" method="POST" id="feedback-form">
+                <input type="hidden" name="_subject" value="Strive Private AI — Beta Feedback">
+                <input type="hidden" name="test_version" value="v1.4.1">
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Your name</label>
+                        <input type="text" name="name" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="platform">Platform</label>
+                    <select name="platform" id="platform" required>
+                        <option value="">Select your OS…</option>
+                        <option>macOS (Apple Silicon)</option>
+                        <option>macOS (Intel)</option>
+                        <option>Windows 11</option>
+                        <option>Windows 10</option>
+                        <option>Ubuntu / Debian</option>
+                        <option>Other Linux</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>How far did you get?</label>
+                    <div class="rating-group" id="progress-rating">
+                        <label class="rating-option"><input type="radio" name="progress" value="App never opened" required>App never opened</label>
+                        <label class="rating-option"><input type="radio" name="progress" value="UI loaded but nothing worked">UI loaded, nothing worked</label>
+                        <label class="rating-option"><input type="radio" name="progress" value="Model downloaded OK">Model downloaded OK</label>
+                        <label class="rating-option"><input type="radio" name="progress" value="Got an AI response">Got an AI response</label>
+                        <label class="rating-option"><input type="radio" name="progress" value="All 8 steps worked">All 8 steps worked</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Overall rating (1–5)</label>
+                    <div class="rating-group" id="overall-rating">
+                        <label class="rating-option"><input type="radio" name="rating" value="1" required>1 · Unusable</label>
+                        <label class="rating-option"><input type="radio" name="rating" value="2">2 · Rough</label>
+                        <label class="rating-option"><input type="radio" name="rating" value="3">3 · Okay</label>
+                        <label class="rating-option"><input type="radio" name="rating" value="4">4 · Good</label>
+                        <label class="rating-option"><input type="radio" name="rating" value="5">5 · Ship it</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="bugs">What broke? (If anything)</label>
+                    <textarea name="bugs" id="bugs" placeholder="Step 3 — Phi-3 download froze at 45%&#10;Step 5 — Error toast said 'model not loaded'&#10;..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="thoughts">Thoughts, confusion, suggestions</label>
+                    <textarea name="thoughts" id="thoughts" placeholder="What felt confusing? What would you expect differently? What's missing?"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="would_pay">Would you pay for this if it worked well?</label>
+                    <div class="rating-group">
+                        <label class="rating-option"><input type="radio" name="would_pay" value="Yes — this solves a real problem">Yes — solves a real problem</label>
+                        <label class="rating-option"><input type="radio" name="would_pay" value="Maybe — if features X/Y were added">Maybe — if features X/Y</label>
+                        <label class="rating-option"><input type="radio" name="would_pay" value="No — not for me">No — not for me</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Send feedback</button>
+            </form>
+        </section>
+
+        <footer>
+            <p>
+                Product of <a href="https://www.strivetech-ai.com" target="_blank">StriveTechAI Ltd</a> ·
+                Beta tester guide v1.4.1 ·
+                <a href="https://github.com/Lee996677/strive-downloads/releases" target="_blank">All releases</a>
+            </p>
+            <p style="margin-top: 8px;">
+                Issues? Questions? Email <a href="mailto:info@strivetech-ai.com">info@strivetech-ai.com</a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Visual rating selection
+        document.querySelectorAll('.rating-group').forEach(group => {
+            group.addEventListener('click', e => {
+                const label = e.target.closest('label.rating-option');
+                if (!label) return;
+                group.querySelectorAll('label').forEach(l => l.classList.remove('selected'));
+                label.classList.add('selected');
+            });
+        });
+
+        // Simple success state after submit
+        const form = document.getElementById('feedback-form');
+        if (form) {
+            form.addEventListener('submit', () => {
+                setTimeout(() => {
+                    form.innerHTML = '<h2 style="text-align:center; color: var(--green); margin-bottom: 12px;">Thank you!</h2><p style="text-align:center; color: var(--text-2);">Your feedback has been received. We\'ll read it and get back to you if we have questions.</p>';
+                }, 100);
+            });
+        }
+    </script>
+</body>
+</html>
